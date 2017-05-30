@@ -48,7 +48,7 @@ public abstract class PaymentTerm {
         display.append(String.format("\nPrice: $%.2f", price ));
         display.append(String.format("\nDownpayment: $%.2f", downPayment ));
         display.append(String.format("\nLoan Amount: $%.2f", loanAmount ));
-        display.append(String.format("\nInterest Rate: %.2f", interestRate ));
+        display.append(String.format("\nInterest Rate: %.2f%%", interestRate ));
         display.append(String.format("\nMonthly Payment: $%.2f", monthlyPayment ));
 
         return display.toString();
