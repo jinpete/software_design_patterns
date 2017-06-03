@@ -1,4 +1,5 @@
 import AutomobilePackage.*;
+import Inventory.HondaInventory;
 import Payment.*;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,6 +32,8 @@ public class Client {
         PaymentTerm paymentTerm = paymentPicker.pickPaymentTerm(price, downPayment, term, creditRating);
 
         System.out.println(paymentTerm);
+        purchase();
+
     }
 
     private static String getModelFromUser() {
@@ -135,4 +138,28 @@ public class Client {
         }
         return returnDownPayment;
     }
+
+    public static void purchase() {
+        BufferedReader reader = new BufferedReader(new InputStreamReader( System.in));
+
+        try {
+            // purchasing decision
+            System.out.println("Accords in stock: 5");
+            System.out.print("\nWhat would you like to do?(default=buy):\nbuy\ncancel\n");
+            String input = reader.readLine();
+
+            if (input.toLowerCase().equals("buy")) {
+                System.out.println("Updated inventory: Accords in stock: 4");
+            } else {
+                System.out.println("Goodbye~");
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+
+//    public void purchaseMade(HondaInventory hondaInventory, int qty) {
+//        hondaInventory.addInventory(-1);
+//    }
 }
