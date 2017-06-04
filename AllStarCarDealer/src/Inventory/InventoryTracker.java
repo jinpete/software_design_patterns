@@ -1,5 +1,4 @@
 package Inventory;
-import AutomobilePackage.*;
 
 public class InventoryTracker {
     private static InventoryTracker inventoryTracker = new InventoryTracker();

@@ -1,8 +1,9 @@
 package Inventory;
+
 import AutomobilePackage.Accord;
 import AutomobilePackage.Automobile;
 
-import java.util.*;
+import java.util.Observable;
 
 final public class HondaInventory extends Observable {
     private static int quantity = 5;

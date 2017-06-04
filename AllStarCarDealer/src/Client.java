@@ -1,10 +1,13 @@
-import AutomobilePackage.*;
-import Inventory.HondaInventory;
-import Payment.*;
+import AutomobilePackage.AutoStore;
+import AutomobilePackage.Automobile;
+import AutomobilePackage.Store;
+import Payment.PaymentPicker;
+import Payment.PaymentTerm;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.ArrayList;
 
 public class Client {
     private static String bodyType;
