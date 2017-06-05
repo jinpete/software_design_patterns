@@ -162,7 +162,4 @@ public class Client {
     }
 
 
-//    public void purchaseMade(HondaInventory hondaInventory, int qty) {
-//        hondaInventory.addInventory(-1);
-//    }
 }

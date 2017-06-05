@@ -36,11 +36,11 @@ public abstract class Automobile {
     }
     public String toString() {
         StringBuffer display = new StringBuffer();
-        display.append("Model Name: " + modelName + "\n");
-        display.append("Make: " + manufacturer + "\n");
-        display.append("Body Type: " + bodyType + "\n");
-        display.append("Model Year: " + modelYear + "\n");
-        display.append(String.format("Price: $%.2f", price) );
+        display.append(String.format("%-10s", manufacturer));
+        display.append(String.format("%-12s", modelName));
+        display.append(String.format("%-12s", bodyType));
+        display.append(String.format("%-12d", modelYear));
+        display.append(String.format("$%-8.2f", price));
         return display.toString();
     }
 }
