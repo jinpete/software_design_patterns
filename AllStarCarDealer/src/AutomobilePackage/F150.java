@@ -5,7 +5,7 @@ public class F150 extends Automobile {
 
     public F150(AutomobileFactory autoFactory) {
         this.autoFactory = autoFactory;
-        setName("F-150");
+        setName("F150");
         setModelYear(2017);
         setPrice(28999);
     }

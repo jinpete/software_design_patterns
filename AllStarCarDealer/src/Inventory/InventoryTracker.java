@@ -8,6 +8,9 @@ public class InventoryTracker implements Comparator<InventoryItem>, Comparable<I
     List<InventoryItem> inventoryItems;
     ArrayList<Automobile> automobiles;
 
+    private ArrayList<Observer> observers;
+    private static int tempIndexNum;
+
     private static InventoryTracker inventoryTracker = new InventoryTracker();
 
     public static InventoryTracker getInstance() {
@@ -15,15 +18,26 @@ public class InventoryTracker implements Comparator<InventoryItem>, Comparable<I
     }
 
     private InventoryTracker() {
+        observers = new ArrayList<Observer>();
         getAutomobiles();
         addItems();
 
     }
 
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update(tempIndexNum);
+        }
+    }
     public void addItems() {
         inventoryItems = new ArrayList<InventoryItem>();
         for(Automobile automobile : automobiles) {
-            InventoryItem inventoryItem = new InventoryItem(automobile, 10);
+            InventoryItem inventoryItem = new InventoryItem(automobile, 6);
             inventoryItems.add(inventoryItem);
         }
     }
@@ -56,6 +70,28 @@ public class InventoryTracker implements Comparator<InventoryItem>, Comparable<I
         return new InventoryIterator(inventoryItems);
     }
 
+    public InventoryItem getInventoryItem(int idx) {
+        return inventoryItems.get(idx);
+    }
+
+    public void buyOne(int idx) {
+        inventoryItems.get(idx).subtractOne();
+        tempIndexNum = idx;
+        notifyObservers();
+    }
+
+
+    public int getQty(int i) {
+        return inventoryItems.get(i).getQty();
+    }
+
+    public String getModelName(int i) {
+        return inventoryItems.get(i).getModelName();
+    }
+
+    public String getManufacturer(int i) {
+        return inventoryItems.get(i).getManufacturer();
+    }
 
     @Override
     /* sort by manufacturer */
