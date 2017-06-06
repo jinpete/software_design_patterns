@@ -5,11 +5,20 @@ public abstract class PaymentTerm {
     double price;
     double downPayment;
     double loanAmount;
-    int term;
     double interestRate;
     double monthlyPayment;
+    int term;
 
-    public abstract void setCreditRating(String rating);
+
+    final int FAIR_CREDIT = 640;
+    final int GOOD_CREDIT = 680;
+    final int EXCELLENT_CREDIT = 720;
+
+    public PaymentTerm() {
+
+    }
+
+    public abstract void setInterestRate(int creditRating);
 
     public void setPrice(double price) {
         this.price = price;
@@ -18,14 +27,6 @@ public abstract class PaymentTerm {
     public void setDownPayment(double downPayment) {
         this.downPayment = downPayment;
     }
-
-//    public void setTerm(int term) {
-//        this.term = term;
-//    }
-//
-//    public void setInterestRate(double interestRate) {
-//        this.interestRate = interestRate;
-//    }
 
     public void setMonthlyPayment() {
         loanAmount = price - downPayment;

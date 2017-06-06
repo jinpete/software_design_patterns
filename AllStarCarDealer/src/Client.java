@@ -1,8 +1,6 @@
-import AutomobilePackage.AutoStore;
-import AutomobilePackage.Automobile;
-import AutomobilePackage.Store;
-import Payment.PaymentPicker;
-import Payment.PaymentTerm;
+import AutomobilePackage.*;
+import Payment.*;
+import Sales.CreditApplication;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,12 +22,12 @@ public class Client {
         System.out.println("You selected\n\n" + automobile +"\n");
 
         double price = automobile.getPrice();
-        double downPayment = 0;
-        int term = 60;
-        String creditRating = "average";
+        double downPayment = getDownPayment();
+        int creditRating = getCreditRating();
 
-        term = getPaymentTerm();
-        downPayment = getDownPayment();
+        getCreditDecision(price, downPayment, creditRating);
+
+        int term = getPaymentTerm();
 
         PaymentPicker paymentPicker = new PaymentPicker();
         PaymentTerm paymentTerm = paymentPicker.pickPaymentTerm(price, downPayment, term, creditRating);
@@ -38,6 +36,24 @@ public class Client {
         purchase();
 
     }
+
+    private static void getCreditDecision(double price, double downPayment, int creditRating) {
+        double loanAmount = price + downPayment;
+        int creditDecision = 0; // 0: pending, 1:denied, 2:approved
+        CreditApplication creditApplication = new CreditApplication(loanAmount, creditRating);
+        creditDecision = creditApplication.applyForCredit();
+
+        if (creditDecision == 1)
+            System.out.println("Your credit application has been denied.  Please try again");
+        else if (creditDecision == 2)
+            System.out.println("Congratulations! Your credit application has been approved.");
+//        while(true) {
+//            if(creditApplication.applyForCredit() ==2)
+//                break;
+
+//        }
+    }
+
 
     private static String getModelFromUser() {
         String returnModelName = null;
@@ -96,6 +112,21 @@ public class Client {
             returnModelList.add("sienna");
         }
         return returnModelList;
+    }
+
+    public static int getCreditRating() {
+        // returns credit rating entered by the user
+        int credit = 650; // default: fair credit
+        BufferedReader reader = new BufferedReader(new InputStreamReader( System.in));
+
+        try {
+            System.out.print("What is your credit score (default=650)? \n");
+            String input = reader.readLine();
+            credit = Integer.parseInt(input);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return credit;
     }
 
     public static int getPaymentTerm() {
@@ -160,6 +191,4 @@ public class Client {
             System.out.println(e);
         }
     }
-
-
 }

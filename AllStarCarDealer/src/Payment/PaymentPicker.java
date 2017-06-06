@@ -15,11 +15,11 @@ public class PaymentPicker {
         else return null;
     }
 
-    public PaymentTerm pickPaymentTerm(double price, double downPayment, int term, String creditRating) {
+    public PaymentTerm pickPaymentTerm(double price, double downPayment, int term, int creditRating) {
         PaymentTerm paymentTerm = createPaymentTerm(term);
         paymentTerm.setPrice(price);
         paymentTerm.setDownPayment(downPayment);
-        paymentTerm.setCreditRating(creditRating);
+        paymentTerm.setInterestRate(creditRating);
         paymentTerm.setMonthlyPayment();
 
         return paymentTerm;
