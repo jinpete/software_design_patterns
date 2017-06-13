@@ -35,7 +35,11 @@ public class InventoryItem {
         qty--;
     }
 
+    public void addInventory(int num) {
+        qty += num;
+    }
+
     public String toString() {
-        return String.format("%-56s%7d%n",automobile.toString() , qty);
+        return String.format("%-56s%7d",automobile.toString() , qty);
     }
 }

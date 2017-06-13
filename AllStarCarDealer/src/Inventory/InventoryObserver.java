@@ -6,7 +6,7 @@ public class InventoryObserver implements Observer {
     private final int STOCK_THRESHOLD = 5;
     private int currentInStockQty;
     private String modelName;
-    private InventoryTracker inventoryTracker = InventoryTracker.getInstance();
+    private InventoryTracker inventoryTracker = InventoryTracker.getTheInventoryTracker();
 
     public InventoryObserver(InventoryTracker inventoryTracker) {
         inventoryTracker.addObserver(this);

@@ -13,7 +13,7 @@ public class InventoryTracker implements Comparator<InventoryItem>, Comparable<I
 
     private static InventoryTracker inventoryTracker = new InventoryTracker();
 
-    public static InventoryTracker getInstance() {
+    public static InventoryTracker getTheInventoryTracker() {
         return inventoryTracker;
     }
 
@@ -58,7 +58,7 @@ public class InventoryTracker implements Comparator<InventoryItem>, Comparable<I
         automobiles.add(autoStore.getAutomobile("tundra"));
     }
 
-    public List<InventoryItem> getInventoryItems() { return inventoryItems; }
+//    public List<InventoryItem> getInventoryItems() { return inventoryItems; }
 
     public InventoryIterator createIterator(String sortType) {
         if (sortType.equals("m")) {
@@ -74,10 +74,14 @@ public class InventoryTracker implements Comparator<InventoryItem>, Comparable<I
         return inventoryItems.get(idx);
     }
 
-    public void buyOne(int idx) {
+    public void purchaseItem(int idx) {
         inventoryItems.get(idx).subtractOne();
         tempIndexNum = idx;
         notifyObservers();
+    }
+
+    public void add(int idx, int qty) {
+        inventoryItems.get(idx).addInventory(qty);
     }
 
 
