@@ -30,18 +30,15 @@ public abstract class PaymentTerm {
 
     public void setMonthlyPayment() {
         loanAmount = price - downPayment;
-        double rate = getRate();
-        double compoundInterest = getCompoundInterest();
+        double rate = interestRate / 1200;
+        double compoundInterest = getCompoundInterest(rate);
         monthlyPayment = loanAmount * rate * compoundInterest / (compoundInterest - 1);
     }
 
-    private double getRate() {
-        return interestRate / 1200;
+    private double getCompoundInterest(double rate) {
+        return Math.pow(1 + rate, term);
     }
 
-    private double getCompoundInterest() {
-        return Math.pow(1 + getRate(), term);
-    }
 
     public String toString() {
         StringBuffer display = new StringBuffer();

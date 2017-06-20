@@ -2,7 +2,7 @@ package AutomobilePackage;
 
 public class AutoStore extends Store {
 
-    public Automobile createAuto(String name) {
+    public Automobile createAutomobile(String name) {
         Automobile automobile = null;
         AutomobileFactory autoFactory;
 
@@ -56,20 +56,7 @@ public class AutoStore extends Store {
                 autoFactory = new ToyotaMinivanFactory();
                 automobile = new Sienna(autoFactory);
                 break;
-
         }
-
-//        if (name.equals("explorer")) {
-//            autoFactory = new FordSUVFactory();
-//            automobile = new Explorer(autoFactory);
-//        }
-
-//        if (name.equals("Fusion")) {
-//            automobile = new FordSedan()
-//        }
-
         return automobile;
     }
-
-
 }

@@ -1,4 +1,4 @@
-package AutomobileIterator;
+package Inventory;
 
 import AutomobilePackage.*;
 
@@ -19,9 +19,11 @@ public class InventoryItem {
         return automobile.getManufacturer().toString();
     }
 
-    public String getBodyType() {
-        return automobile.getBodyType().toString();
-    }
+// --Commented out by Inspection START (6/18/2017 11:45 PM):
+//    public String getBodyType() {
+//        return automobile.getBodyType().toString();
+//    }
+// --Commented out by Inspection STOP (6/18/2017 11:45 PM)
 
     public double getPrice() {
         return automobile.getPrice();

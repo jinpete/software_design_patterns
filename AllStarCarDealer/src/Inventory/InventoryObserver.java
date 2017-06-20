@@ -19,7 +19,7 @@ public class InventoryObserver implements Observer {
     }
 
     public void display() {
-        if (currentInStockQty <= 5){
+        if (currentInStockQty <= STOCK_THRESHOLD){
             System.out.println(String.format("Message from observer...%n%nIn Stock Quantity of %s has reached LOW THRESHOLD of 5.%nCurrent in stock quantity is %d",
                     modelName, currentInStockQty));
         }

@@ -1,10 +1,10 @@
 package AutomobilePackage;
 
 public abstract class Store {
-    abstract Automobile createAuto(String name);
+    abstract Automobile createAutomobile(String name);
 
     public Automobile getAutomobile(String name) {
-        Automobile automobile = createAuto(name);
+        Automobile automobile = createAutomobile(name);
         automobile.setValues();
         return automobile;
     }

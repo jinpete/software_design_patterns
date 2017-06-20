@@ -1,7 +1,5 @@
 package Inventory;
 
-import AutomobileIterator.*;
-
 import java.io.*;
 import java.util.*;
 
@@ -19,12 +17,20 @@ public class InventoryViewer {
         setupInventory();
     }
 
-    public void printSelectedAutomobile(String modelName) {
+    public boolean printSelectedAutomobile(String modelName) {
+        boolean bInStock = false;
         tempAutoIndex = tempAutoList.indexOf(modelName);
         System.out.println("You selected");
         System.out.println("Make      Model Name  Body Type   Model Year  Price     InStock");
         System.out.println("---------------------------------------------------------------");
         System.out.println(inventoryTracker.getInventoryItem(tempAutoIndex));
+
+        if(inventoryTracker.getInventoryItem(tempAutoIndex).getQty() < 1) {
+            System.out.println("There's no more " + inventoryTracker.getInventoryItem(tempAutoIndex).getModelName() + " in stock. Please choose another model.\n");
+        } else {
+            bInStock = true;
+        }
+        return bInStock;
     }
 
     public void setInventoryIndexNum(int idx) {
@@ -65,7 +71,7 @@ public class InventoryViewer {
         String sortBy = "m";
         while(true) {
             try {
-                System.out.println("Menu:\ntype 'i' to view inventory. Otherwise, catalog menu will display.");
+                System.out.println("Menu:\ntype 'i' to view inventory, 'u' to update inventory. Otherwise, catalog menu will display.");
                 String input = reader.readLine();
                 if (input.toLowerCase().equals("i")) {
                     System.out.println("Type 'p' to view inventory sorted by price. Otherwise, results will be sorted by manufacturer.");
@@ -75,8 +81,12 @@ public class InventoryViewer {
                     else
                         sortBy = "m";
                     printInventory(sortBy);
-                } else
+                } else if (input.toLowerCase().equals("u")) {
+                    InventoryManager inventoryManagement = new InventoryManager();
+                    inventoryManagement.doInventory();
+                } else {
                     break;
+                }
             }
             catch (IOException e) {
                 System.out.println(e);

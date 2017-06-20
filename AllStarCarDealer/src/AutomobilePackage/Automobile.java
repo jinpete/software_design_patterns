@@ -5,8 +5,6 @@ public abstract class Automobile {
     Manufacturer manufacturer;
     BodyType bodyType;
 
-    String sMake;
-    String sBody;
     int modelYear;
     double price;
 
@@ -17,7 +15,6 @@ public abstract class Automobile {
     }
     public Manufacturer getManufacturer() { return manufacturer; }
     public BodyType getBodyType() { return bodyType; }
-    public int getModelYear() { return modelYear; }
 
     public void setName(String name) {
         this.modelName = name;

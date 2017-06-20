@@ -1,7 +1,5 @@
-//import AutomobileIterator.*;
 import AutomobilePackage.*;
 import Inventory.*;
-//import Payment.*;
 import Sales.*;
 
 import java.io.*;
@@ -11,25 +9,32 @@ public class UserInterface {
     private static String bodyType;
     private static InventoryTracker inventoryTracker = InventoryTracker.getTheInventoryTracker(); // singleton inventory tracker
     private static InventoryViewer inventoryViewer = InventoryViewer.getTheInventoryViewer(); // singleton inventory viewer
-    private static double price;
+//    private static double price;
 
     public static void main(String[] args) {
         String modelName;
-
+        double price;
+        Automobile automobile;
         // instantiate inventory observer
         InventoryObserver inventoryObserver = new InventoryObserver(inventoryTracker);
 
-        inventoryViewer.selectMenu(); // ask what user wants to do
-        getBodyTypeFromUser();
-        modelName = getModelFromUser();
-        Store autoStore = new AutoStore();
-        Automobile automobile = autoStore.getAutomobile(modelName);
+        while (true) {
+            inventoryViewer.selectMenu(); // ask what user wants to do
+            while(true) {
+                getBodyTypeFromUser();
+                modelName = getModelFromUser();
+                Store autoStore = new AutoStore();
+                automobile = autoStore.getAutomobile(modelName);
 
-        inventoryViewer.printSelectedAutomobile(modelName);
-        price = automobile.getPrice(); // get default price
+                if(inventoryViewer.printSelectedAutomobile(modelName))
+                    break;
+            }
+            price = automobile.getPrice(); // get default price
 
-        SalesTransaction salesTransaction = new SalesTransaction(price);
-        salesTransaction.beginTransaction();
+            SalesTransaction salesTransaction = new SalesTransaction(price);
+            boolean continueProgram = salesTransaction.beginTransaction();
+            if (!continueProgram) break;
+        }
     }
 
     private static String getModelFromUser() {
@@ -40,8 +45,8 @@ public class UserInterface {
         try {
             // Display a list of body types
             System.out.print(String.format("Please choose a model (default=%s):%n",modelArrayList.get(0) ));
-            for(int i = 0; i < modelArrayList.size(); i++)
-                System.out.println(modelArrayList.get(i));
+            for (String aModelArrayList : modelArrayList)
+                System.out.println(aModelArrayList);
             String input = reader.readLine();
 
             returnModelName = modelArrayList.contains(input.toLowerCase()) ? input.toLowerCase() : modelArrayList.get(0);

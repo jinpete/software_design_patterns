@@ -1,4 +1,4 @@
-package AutomobileIterator;
+package Inventory;
 
 public interface ItemIterator {
     boolean hasNext();

@@ -15,16 +15,15 @@ public class SalesTransaction {
     private double price;
     private double downPayment;
     private int creditRating;
-//    private int term;
 
     public SalesTransaction(double price) {
         this.price = price;
     }
 
-    public void beginTransaction() {
+    public boolean beginTransaction() {
         getCreditDecision(price);
         getPaymentTerm();
-        purchase();
+        return purchase();
     }
 
     private void getCreditDecision(double price) {
@@ -52,7 +51,7 @@ public class SalesTransaction {
         BufferedReader reader = new BufferedReader(new InputStreamReader( System.in));
 
         try {
-            System.out.print("Please choose a downpayment amount(default=0):\n");
+            System.out.print("Please choose a down payment amount(default=0):\n");
             String input = reader.readLine();
 
             if(input.isEmpty()) {
@@ -112,14 +111,14 @@ public class SalesTransaction {
     }
 
 
-    public void purchase() {
+    public boolean purchase() {
 
         int autoIndex = inventoryViewer.getInventoryIndex();
         BufferedReader reader = new BufferedReader(new InputStreamReader( System.in));
-
+        boolean returnContinue = false;
         try {
             // purchasing decision
-            System.out.println("\nType 'b' to buy. Otherwise, transaction will be canceled. (default=buy):");
+            System.out.println("\nType 'b' to buy. Otherwise, transaction will be canceled. (default=b):");
             String input = reader.readLine();
             if(input.isEmpty())
                 input="b";
@@ -127,11 +126,22 @@ public class SalesTransaction {
             if (input.toLowerCase().equals("b")) {
                 inventoryTracker.purchaseItem(autoIndex);
                 System.out.println(String.format("%n%nCongratulations! Enjoy your new %s %s!", inventoryTracker.getManufacturer(autoIndex), inventoryTracker.getModelName(autoIndex)));
-            } else {
-                System.out.println("Goodbye~");
             }
         } catch (IOException e) {
             System.out.println(e);
         }
+
+        try {
+            System.out.println("\nType 'q' to quit. Otherwise, main menu will display:");
+            String input = reader.readLine();
+            if (input.toLowerCase().equals("q")) {
+                returnContinue = false;
+            } else {
+                returnContinue = true;
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return returnContinue;
     }
 }

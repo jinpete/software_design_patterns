@@ -1,11 +1,15 @@
 # software_design_patterns
 
-Term Project files have been moved to AllStarCarDealer folder.
+User Interface
+-Type i to view inventory
+-Inventory can then be viewed, sorted by price or manufacturer
+-Select from list of available vehicle type
+-Select from list of available models
+-Provide credit score and down payment, if any
+-if credit is denied, adjust down payment and try again
+-if credit is approved, proceed to selecting a payment plan and finalize the sales transaction
 
-Assignment 4:
-  -Iterator Pattern
-    Iterator implementation is in Inventory module
-    InventoryTracker is a singleton that keeps track of items in inventory
-  -State pattern
-    Implemented in Sales module (CreditApplication class)
-    
+Inventory Manager
+-Select from list of available vehicles
+-Enter the quantity to add to inventory
+-View updated inventory

@@ -1,5 +1,5 @@
 package Inventory;
 
 public interface Observer {
-        public void update(int indexNum);
+        void update(int indexNum);
 }

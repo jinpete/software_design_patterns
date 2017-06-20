@@ -1,23 +1,14 @@
 package Inventory;
 
-import AutomobileIterator.ItemIterator;
 import Tools.*;
 import java.io.*;
-import java.util.*;
 
 
-public class InventoryManagement {
-//    private static ArrayList<String> tempAutoList;
-//    private static int tempAutoIndex;
+public class InventoryManager {
     private static InventoryTracker inventoryTracker = InventoryTracker.getTheInventoryTracker();
-//    private static ItemIterator inventoryIterator;
     private static InventoryViewer inventoryViewer = InventoryViewer.getTheInventoryViewer();
 
-    public static void main(String[] args) {
-        doInventory();
-    }
-
-    private static void doInventory() {
+    public void doInventory() {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         inventoryViewer.printInventory("m");
 

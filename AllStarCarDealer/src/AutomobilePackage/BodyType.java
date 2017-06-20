@@ -1,5 +1,5 @@
 package AutomobilePackage;
 
-public abstract interface BodyType {
-    public String toString();
+public interface BodyType {
+    String toString();
 }

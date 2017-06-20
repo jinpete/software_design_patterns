@@ -1,6 +1,4 @@
-package AutomobileIterator;
-
-import AutomobilePackage.Automobile;
+package Inventory;
 
 import java.util.Comparator;
 
